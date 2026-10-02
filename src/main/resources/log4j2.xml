@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="warn">
+    <Properties>
+        <Property name="filename">log/app.log</Property>
+    </Properties>
+
+    <Appenders>
+        <Console name="COLOR" target="SYSTEM_OUT">
+            <PatternLayout pattern="%highlight{%d [%t] %-5level: %msg%n%throwable}"/>
+        </Console>
+        <File name="File" fileName="${filename}">
+            <PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n"/>
+        </File>
+    </Appenders>
+
+    <Loggers>
+        <Root level="debug">
+            <AppenderRef ref="COLOR" level="info"/>
+            <AppenderRef ref="File"/>
+        </Root>
+    </Loggers>
+
+</Configuration>
