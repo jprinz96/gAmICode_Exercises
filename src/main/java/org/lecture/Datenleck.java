@@ -1,5 +1,13 @@
 package org.lecture;
 
+/**
+ * Benutzer-ID Zugriffe sind der Reihe nach in einem Array gespeichert.
+ * Ein Datenleck liegt vor, wenn dieselbe Benutzer-ID min. 3x direkt hintereinander vorkommt.
+ *
+ * Finde die längste Folge identischer IDs und gib deren länge zurück.
+ * Ist das Array leer oder null, gib 0 zurück.
+ *
+ */
 public class Datenleck {
 
     static void main() {
