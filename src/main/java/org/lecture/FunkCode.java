@@ -13,13 +13,13 @@ package org.lecture;
 public class FunkCode {
     static void main() {
         String text = "AAABBCCCCDAA";
-        String text2 = "";
-        String text3 = null;
-        String text4 ="abCDe1!";
+        String text2 = "!!!AAA6CDD@@@@";
+
         System.out.println(encoder(text));
-        System.out.println(encoder(text2));
-        System.out.println(encoder(text3));
-        System.out.println(encoder(text4));
+        System.out.println(encoder2(text2));
+
+
+
     }
 
     public static String encoder(String text) {
@@ -55,4 +55,43 @@ public class FunkCode {
 
         return sb.toString();
     }
+
+    /**
+     * Ändere so, dass auch Zahlen und Sonderzeichen akzeptiert werden &
+     * die Codes mit | getrennt werden
+     * !!!AAA6CDD@@@@ --> !3|A3|61|C1|D2|@4
+     *
+     */
+    public static String encoder2(String text) {
+        StringBuilder sb = new StringBuilder();
+
+        if (text == null || text.isEmpty()) {
+            return "";
+        }
+
+        char letter = text.charAt(0);
+        sb.append(letter);
+
+        int count = 1;
+
+        for (int i = 0; i < text.length() - 1; i++) {
+            if (text.charAt(i) == text.charAt(i + 1)) {
+                count++;
+            }
+
+            if (text.charAt(i) != text.charAt(i + 1)) {
+                sb.append(count);
+                sb.append("|");
+
+                letter = text.charAt(i + 1);
+                sb.append(letter);
+                count = 1;
+            }
+
+        }
+        sb.append(count);
+        return sb.toString();
+    }
+
+
 }
