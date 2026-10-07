@@ -16,3 +16,27 @@ Beispiel:
 ""             -> ""
 ```
 (max. 118.75 Punkte)
+### Task 2/2
+Emmi empfängt nun auch Zahlen und Sonderzeichen. Damit die einzelnen Blöcke weiterhin eindeutig erkennbar sind, werden sie mit ``|`` getrennt.
+
+Aus 111AAA!!!?? wird 13|A3|!3|?2.
+
+Beispiele:
+```text
+"111AAA!!!??" -> "13|A3|!3|?2"
+
+"AA11BB" -> "A2|12|B2"
+
+"AAAAAAAAAAAA" -> "A12"
+
+"111111111111" -> "112"
+```
+Die Nachricht kann 
+- Buchstaben, 
+- Zahlen, 
+- Leerzeichen und 
+- Sonderzeichen enthalten.
+
+Das Zeichen ``|`` kommt in den Nachrichten nicht vor. <br>
+Ist der übergebene Text leer oder null, gib einen leeren String zurück. <br>
+(max. 118.75 Punkte)
