@@ -4,18 +4,15 @@ import java.util.Arrays;
 
 public class Main {
     public static int findeFehler(int[] messwerte) {
-        // TODO
-        if (messwerte == null || messwerte.length == 0) {
-            return -1;
-        }
+
         int[] messwerteSortiert = Arrays.stream(messwerte)
                 .sorted()
                 .toArray();
 
-        int lückeAnfang = messwerteSortiert[1] - messwerteSortiert[0];
-        int lückeEnde = messwerteSortiert[messwerteSortiert.length - 1] - messwerteSortiert[messwerteSortiert.length - 2];
+        int gapStart = messwerteSortiert[1] - messwerteSortiert[0];
+        int gapEnd = messwerteSortiert[messwerteSortiert.length - 1] - messwerteSortiert[messwerteSortiert.length - 2];
 
-        if (lückeAnfang > lückeEnde) {
+        if (gapStart > gapEnd) {
             return messwerteSortiert[0];
         } else return messwerteSortiert[messwerteSortiert.length - 1];
     }
