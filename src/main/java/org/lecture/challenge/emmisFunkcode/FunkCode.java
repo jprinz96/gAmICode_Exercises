@@ -1,4 +1,4 @@
-package org.lecture;
+package org.lecture.challenge.emmisFunkcode;
 
 /**
  * Nachrichten aus einem alten Funksystem treffen ein.

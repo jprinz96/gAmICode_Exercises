@@ -1,4 +1,4 @@
-package org.lecture;
+package org.lecture.challenge.emmisDatenleck;
 
 /**
  * Benutzer-ID Zugriffe sind der Reihe nach in einem Array gespeichert.

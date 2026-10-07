@@ -1,4 +1,4 @@
-package org.lecture.EmmisLogdatei;
+package org.lecture.challenge.emmisLogdatei;
 
 public class Main {
     static void main() {

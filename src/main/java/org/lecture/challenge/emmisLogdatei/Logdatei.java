@@ -1,4 +1,4 @@
-package org.lecture.EmmisLogdatei;
+package org.lecture.challenge.emmisLogdatei;
 
 import java.util.HashMap;
 import java.util.Map;
