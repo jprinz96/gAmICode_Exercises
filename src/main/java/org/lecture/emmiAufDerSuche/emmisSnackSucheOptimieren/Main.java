@@ -22,5 +22,10 @@ public class Main {
 
         ergebnis = emmisearch.efficientSearch(archive, 10060);
         System.out.println("Binär Search: " + ergebnis);
+
+        for (int i = 1; i <= 50; i*=2 ) {
+            System.out.println(i);
+
+        }
     }
 }
