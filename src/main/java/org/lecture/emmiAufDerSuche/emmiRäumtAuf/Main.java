@@ -16,6 +16,12 @@ public class Main {
                 ));
 
         System.out.println("Anzahl Snacks: " + snacks.size());
+        EmmiSort emmiSort = new EmmiSort();
+        emmiSort.bubbleSort(snacks);
+
+        for (int i = 0; i < snacks.size(); i++) {
+            System.out.println(snacks.get(i));
+        }
     }
 
 }
