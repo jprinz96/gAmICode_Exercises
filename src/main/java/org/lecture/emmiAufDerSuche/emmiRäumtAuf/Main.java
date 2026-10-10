@@ -1,5 +1,6 @@
 package org.lecture.emmiAufDerSuche.emmiRäumtAuf;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -16,12 +17,16 @@ public class Main {
                 ));
 
         System.out.println("Anzahl Snacks: " + snacks.size());
-        EmmiSort emmiSort = new EmmiSort();
-        emmiSort.bubbleSort(snacks);
+
+        EmmiSort.mergeSort(snacks);
+
 
         for (int i = 0; i < snacks.size(); i++) {
             System.out.println(snacks.get(i));
         }
+
+
     }
+
 
 }
