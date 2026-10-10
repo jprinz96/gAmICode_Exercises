@@ -57,19 +57,16 @@ public class EmmiSort {
                 indexNew++;
 
             }
-            while (indexL < left.size()) {
-                snacks.set(indexNew, left.get(indexL));
-                indexL++;
-                indexNew++;
-            }
-            while (indexR < right.size()) {
-                snacks.set(indexNew, right.get(indexR));
-                indexNew++;
-                indexR++;
-            }
-
-
-
+        }
+        while (indexL < left.size()) {
+            snacks.set(indexNew, left.get(indexL));
+            indexL++;
+            indexNew++;
+        }
+        while (indexR < right.size()) {
+            snacks.set(indexNew, right.get(indexR));
+            indexNew++;
+            indexR++;
         }
 
     }

@@ -16,3 +16,12 @@ public static void mergeSort(TrackedSnackList snacks)
 ```
 Teilt die Liste rekursiv in kleinere Teilbereiche, sortiert diese und führt sie anschließend wieder korrekt zusammen.<br>
 Achtet bei eurer Implementierung darauf, dass Merge Sort stabil ist. (max. 108.9 Punkte)
+### Task 3/3
+Emmi möchte noch eine zweite schnelle Sortierstrategie ausprobieren: **Quick Sort. 🚀** <br>
+Erstellt in EmmiSort die Methode
+```java
+public static void quickSort(TrackedSnackList snacks)
+```
+Verwendet dabei das letzte Element eines Bereichs als Pivot und partitioniert die übrigen Elemente entsprechend ihrer Priorität.
+
+Im Gegensatz zu Bubble Sort und Merge Sort muss die Reihenfolge von Snacks mit gleicher Priorität nicht erhalten bleiben. (max. 108.9 Punkte)
