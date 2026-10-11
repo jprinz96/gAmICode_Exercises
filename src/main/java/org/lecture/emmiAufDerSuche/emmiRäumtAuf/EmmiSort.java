@@ -3,6 +3,7 @@ package org.lecture.emmiAufDerSuche.emmiRäumtAuf;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class EmmiSort {
     public static void bubbleSort(TrackedSnackList snacks) {
         int size = snacks.size();
@@ -69,5 +70,33 @@ public class EmmiSort {
             indexR++;
         }
 
+    }
+
+    public static void quickSort(TrackedSnackList snacks) {
+        quickSort(snacks, 0, snacks.size() - 1);
+
+    }
+
+    private static void quickSort(TrackedSnackList snacks, int lowIndex, int highIndex) {
+        if (lowIndex >= highIndex) {
+            return;
+        }
+
+        SortSnack pivot = snacks.get(highIndex);
+        int left = lowIndex;
+
+        for (int i = lowIndex; i < highIndex; i++) {
+            if (snacks.compareValues(snacks.get(i), pivot) <= 0) {
+                snacks.swap(left, i);
+                left++;
+            }
+        }
+
+        // Pivot an seinen endgültigen Platz setzen
+        snacks.swap(left, highIndex);
+
+        // Die Bereiche links und rechts vom Pivot sortieren
+        quickSort(snacks, lowIndex, left - 1);
+        quickSort(snacks, left + 1, highIndex);
     }
 }

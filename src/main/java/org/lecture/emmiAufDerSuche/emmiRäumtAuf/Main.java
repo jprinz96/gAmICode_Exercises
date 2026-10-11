@@ -18,8 +18,8 @@ public class Main {
 
         System.out.println("Anzahl Snacks: " + snacks.size());
 
-        EmmiSort.mergeSort(snacks);
-
+        //EmmiSort.mergeSort(snacks);
+        EmmiSort.quickSort(snacks);
 
         for (int i = 0; i < snacks.size(); i++) {
             System.out.println(snacks.get(i));
