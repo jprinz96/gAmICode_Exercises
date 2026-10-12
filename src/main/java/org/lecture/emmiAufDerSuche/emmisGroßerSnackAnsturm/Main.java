@@ -19,7 +19,10 @@ public class Main {
                         new Snack(109, "Butter-Bombe"),
                         new Snack(100, "Snack-Stern")
                 ));
+        List<Integer> targetIds = List.of(109, 101, 999);
 
         System.out.println("Anzahl Snacks: " + snacks.size());
+
+        System.out.println(EmmiSnackFinder.findSnacks(snacks, targetIds));
     }
 }

@@ -45,41 +45,45 @@ public class EmmiSearch {
         if (archive.size() == 0) {
             return -1;
         }
-
         if (archive.get(0).id() == targetId) {
             return 0;
         }
-
-
-        int suchIndex = 1;
-
-        for (; suchIndex < archive.size()
-                && archive.get(suchIndex).id() < targetId; suchIndex *= 2) {
-
+        int i = 1;
+        while (i < archive.size() && archive.get(i).id() < targetId) {
+            i *= 2;
         }
+        return efficientSearch(archive, targetId, i / 2, Math.min(i, archive.size() - 1));
+    }
 
-        int left = suchIndex / 2;
-        int right = Math.min(suchIndex, archive.size() - 1);
-
+    public static int efficientSearch(EmmiSnackArchive archive, int targetId, int low, int high) {
+        if (archive.size() == 0) {
+            return -1;
+        }
+        int left = low;
+        int right = high;
 
         while (left <= right) {
-            int mid = left + (right - left) / 2;
-            int currentId = archive.get(mid).id();
+            int middle = left + (right - left) / 2;
+            int middleId = archive.get(middle).id();
 
-            if (currentId == targetId) {
-                return mid;
-            } else if (currentId < targetId) {
-                left = mid + 1;
-            } else {
-                right = mid - 1;
+            if (targetId == middleId) {
+                return middle;
+            }
+            if (targetId < middleId) {
+                right = middle - 1;
+            }
+            if (targetId > middleId) {
+                left = middle + 1;
             }
         }
 
         return -1;
     }
 
-
 }
+
+
+
 
 
 
