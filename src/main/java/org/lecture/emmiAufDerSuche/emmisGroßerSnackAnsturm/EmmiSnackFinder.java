@@ -76,8 +76,7 @@ public class EmmiSnackFinder {
     }
 
     //binarySearch
-    private static List<Snack> binarySearch(
-            TrackedSnackList snacks, List<Integer> targetIds) {
+    private static List<Snack> binarySearch(TrackedSnackList snacks, List<Integer> targetIds) {
 
         List<Snack> result = new ArrayList<>();
 
