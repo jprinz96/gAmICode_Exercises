@@ -22,55 +22,56 @@ public class EmmiSort {
         if (snacks.size() <= 1) {
             return;
         }
+        List<SortSnack> left = new ArrayList<>();
+        List<SortSnack> right = new ArrayList<>();
+
         int middle = snacks.size() / 2;
-        List<SortSnack> snacksLeft = new ArrayList<>();
-        List<SortSnack> snacksRight = new ArrayList<>();
 
+        //linken werte speichern
         for (int i = 0; i < middle; i++) {
-            snacksLeft.add(snacks.get(i));
+            left.add(snacks.get(i));
         }
+        //rechte werte speichern
         for (int i = middle; i < snacks.size(); i++) {
-            snacksRight.add(snacks.get(i));
+            right.add(snacks.get(i));
         }
-        TrackedSnackList left = new TrackedSnackList(snacksLeft);
-        TrackedSnackList right = new TrackedSnackList(snacksRight);
+        TrackedSnackList leftSnacks = new TrackedSnackList(left);
+        TrackedSnackList rightSnacks = new TrackedSnackList(right);
 
-        mergeSort(left);
-        mergeSort(right);
+        mergeSort(leftSnacks);
+        mergeSort(rightSnacks);
+        merge(snacks, leftSnacks, rightSnacks);
 
-        merge(snacks, left, right);
     }
 
     private static void merge(TrackedSnackList snacks, TrackedSnackList left, TrackedSnackList right) {
-        int indexL = 0;
-        int indexR = 0;
-        int indexNew = 0;
+        int i = 0;
+        int j = 0;
+        int k = 0;
 
-        while (indexL < left.size() && indexR < right.size()) {
-            if (snacks.compareValues(left.get(indexL), right.get(indexR)) <= 0) {
-                snacks.set(indexNew, left.get(indexL));
-                indexL++;
-                indexNew++;
-
+        while (i < left.size() && j < right.size()) {
+            //snacks.compare(i, j);
+            if (snacks.compareValues(left.get(i), right.get(j)) <= 0) {
+                snacks.set(k, left.get(i));
+                i++;
             } else {
-                snacks.set(indexNew, right.get(indexR));
-                indexR++;
-                indexNew++;
-
+                snacks.set(k, right.get(j));
+                j++;
             }
+            k++;
         }
-        while (indexL < left.size()) {
-            snacks.set(indexNew, left.get(indexL));
-            indexL++;
-            indexNew++;
+        while (i < left.size()) {
+            snacks.set(k, left.get(i));
+            i++;
+            k++;
         }
-        while (indexR < right.size()) {
-            snacks.set(indexNew, right.get(indexR));
-            indexNew++;
-            indexR++;
+        while (j < right.size()) {
+            snacks.set(k, right.get(j));
+            j++;
+            k++;
         }
-
     }
+
 
     public static void quickSort(TrackedSnackList snacks) {
         quickSort(snacks, 0, snacks.size() - 1);

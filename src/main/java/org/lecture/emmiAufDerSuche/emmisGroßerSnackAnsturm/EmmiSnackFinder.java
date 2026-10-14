@@ -5,107 +5,106 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-public class EmmiSnackFinder {
+import java.util.*;
 
-    public static List<Snack> findSnacks(
+public class EmmiSnackFinder {
+    // TO DO
+    public static List<Snack> findSnacks(TrackedSnackList snacks, List<Integer> targetIds){
+
+        mergeSort(snacks);
+        return binarySearch(snacks, targetIds);
+
+    }
+    //mergeSort
+    private static void mergeSort(TrackedSnackList snacks){
+        if(snacks.size() <= 1){
+            return;
+        }
+
+        List<Snack> left = new ArrayList<>();
+        List<Snack> right = new ArrayList<>();
+
+
+        int middle = snacks.size()/2;
+        //links
+        for (int i = 0; i < middle; i++){
+            left.add(snacks.get(i));
+        }
+        //rechts
+        for(int i = middle; i < snacks.size(); i++){
+            right.add(snacks.get(i));
+        }
+
+
+        TrackedSnackList leftSnacks = new TrackedSnackList(left);
+        TrackedSnackList rightSnacks = new TrackedSnackList(right);
+
+        mergeSort(leftSnacks);
+        mergeSort(rightSnacks);
+        merge(snacks, leftSnacks, rightSnacks);
+
+    }
+
+    private static void merge(TrackedSnackList snacks, TrackedSnackList left, TrackedSnackList right){
+        int i = 0;
+        int j = 0;
+        int k = 0;
+
+        while(i < left.size() && j < right.size()){
+
+            if(left.get(i).id() <= right.get(j).id()){
+                //snacks.set(index, snack);
+                snacks.set(k, left.get(i));
+                i++;
+            }
+            else{
+                snacks.set(k, right.get(j));
+                j++;
+            }
+            k++;
+        }
+        while(i < left.size()){
+            snacks.set(k, left.get(i));
+            i++;
+            k++;
+        }
+        while(j < right.size()){
+            snacks.set(k, right.get(j));
+            j++;
+            k++;
+        }
+    }
+
+    //binarySearch
+    private static List<Snack> binarySearch(
             TrackedSnackList snacks, List<Integer> targetIds) {
 
         List<Snack> result = new ArrayList<>();
 
-        if (targetIds.isEmpty()) {
-            return result;
-        }
-
-        Snack[] helper = new Snack[snacks.size()];
-        mergeSort(snacks, helper, 0, snacks.size() - 1);
-
         for (int id : targetIds) {
-            result.add(binarySearch(snacks, id));
-        }
+            int left = 0;
+            int right = snacks.size() - 1;
+            Snack found = null;
+
+            while (left <= right) {
+                int middle = left + (right - left) / 2;
+                Snack current = snacks.get(middle);
+
+                if (current.id() == id) {
+                    found = current;
+                    break;
+                } else if (current.id() < id) {
+                    left = middle + 1;
+                } else {
+                    right = middle - 1;
+                }
+            } // Suche für diese ID beendet
+
+            result.add(found);
+        } // Alle Ziel-IDs bearbeitet
 
         return result;
     }
 
-    private static Snack binarySearch(
-            TrackedSnackList snacks, int targetId) {
 
-        int left = 0;
-        int right = snacks.size() - 1;
-
-        while (left <= right) {
-            int middle = left + (right - left) / 2;
-            Snack snack = snacks.get(middle);
-
-            int comparison = snacks.compareValueToId(snack, targetId);
-
-            if (comparison == 0) {
-                return snack;
-            } else if (comparison < 0) {
-                left = middle + 1;
-            } else {
-                right = middle - 1;
-            }
-        }
-
-        return null;
-    }
-
-    private static void mergeSort(
-            TrackedSnackList snacks, Snack[] helper,
-            int left, int right) {
-
-        if (left >= right) {
-            return;
-        }
-
-        int middle = left + (right - left) / 2;
-
-        mergeSort(snacks, helper, left, middle);
-        mergeSort(snacks, helper, middle + 1, right);
-
-        merge(snacks, helper, left, middle, right);
-    }
-
-    private static void merge(
-            TrackedSnackList snacks, Snack[] helper,
-            int left, int middle, int right) {
-
-        // Aktuellen Bereich in das Hilfsarray kopieren.
-        for (int i = left; i <= right; i++) {
-            helper[i] = snacks.get(i);
-        }
-
-        int indexL = left;
-        int indexR = middle + 1;
-        int indexNew = left;
-
-        // Jeweils den kleineren Snack zurückschreiben.
-        while (indexL <= middle && indexR <= right) {
-            if (snacks.compareValues(
-                    helper[indexL], helper[indexR]) <= 0) {
-
-                snacks.set(indexNew, helper[indexL]);
-                indexL++;
-            } else {
-                snacks.set(indexNew, helper[indexR]);
-                indexR++;
-            }
-
-            indexNew++;
-        }
-
-        // Übrige Snacks der linken Hälfte übernehmen.
-        while (indexL <= middle) {
-            snacks.set(indexNew, helper[indexL]);
-            indexL++;
-            indexNew++;
-        }
-
-        // Übrige Snacks der rechten Hälfte übernehmen.
-        while (indexR <= right) {
-            snacks.set(indexNew, helper[indexR]);
-            indexR++;
-            indexNew++;
-        }
-    }
 }
